@@ -19,7 +19,9 @@ Project is built on `Rails 6.0.4.1` and running on `Ruby 3.0.2`. Make sure to us
 Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
 
 ```shell
-bundle install && yarn
+bundle install
+
+yarn
 ```
 
 Project is also using [Webpacker](https://github.com/rails/webpacker)
@@ -39,7 +41,9 @@ The database used is `PostgreSQL`. Since I am using macOS you can install it thr
 For windows machine - not sure how to set it up. As long as you have PostgreSQL, the rails command will execute it right away.
 
 ```shell
-rails db:create db:migrate
+rails db:create
+
+rails db:migrate
 ```
 
 ### Run the Codebase
