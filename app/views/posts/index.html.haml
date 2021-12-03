@@ -1,0 +1,5 @@
+- @posts.each do |post|
+  %p=post.title
+  %p=post.description
+  %p=post.is_public
+  %p="Name: #{post.user.id}"
