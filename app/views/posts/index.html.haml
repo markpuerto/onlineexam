@@ -1,5 +1,26 @@
-- @posts.each do |post|
-  %p=post.title
-  %p=post.description
-  %p=post.is_public
-  %p="Name: #{post.user.id}"
+%h1 POSTINGS
+
+- if session[:user_id].present?
+  %h5
+    %a{ href: new_post_path } Create New Posting
+
+%table{ style: "margin: 30px 0px 0px;"}
+  %tr
+    %th ID
+    %th Title
+    %th Description
+    %th Public Post?
+    %th Owner
+    - if session[:user_id].present?
+      %th Action
+  - @posts.each do |post|
+    %tr
+      %td=post.id
+      %td=post.title
+      %td=post.description
+      %td="#{post.is_public? ? 'Yes' : 'No' }"
+      %td=post.user.name
+      - if session[:user_id].present? and post.user.id == session[:user_id]
+        %td
+          %a{ href: edit_post_path(id: "#{post.id}") } Edit
+          = link_to 'Delete', post_delete_path("#{post.id}"), :method => :delete

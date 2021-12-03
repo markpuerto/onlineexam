@@ -5,5 +5,18 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    -# = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
   %body
+    .header
+      - if session[:user_id].present?
+        %span
+          ="Signed In as: #{@user.name}"
+        %a{ href: logout_sessions_path } Sign Out
+      - else
+        %a{ href: new_session_path } Sign In
+        %a{ href: new_registration_path } Register
+    - if flash[:message].present?
+      .flash
+        %p=flash[:message]
     = yield

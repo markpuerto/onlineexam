@@ -8,20 +8,24 @@ class PostsController < ApplicationController
   end
 
   def new
+    redirect_to root_path if !current_user.present?
+
     @post = Post.new(user_id: current_user)
   end
 
   def create
     @post = Post.create(params_posts)
 
-    redirect_to posts_path
+    flash[:message] = "Posting has been added!"
+
+    redirect_to root_path
   end
 
   def edit
     @post = Post.find_by(id: params[:id], user_id: current_user)
 
     if @post.nil?
-      redirect_to posts_path
+      redirect_to root_path
     end
   end
 
@@ -29,18 +33,22 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.update(params_posts)
 
-    redirect_to posts_path
+    flash[:message] = "Posting has been updated!"
+
+    redirect_to root_path
   end
 
   def destroy
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:post_id])
     @post.delete
 
-    redirect_to posts_path
+    flash[:message] = "Posting has been deleted!"
+
+    redirect_to root_path
   end
 
   private
     def params_posts
-      params.require(:post).permit(:user_id, :title, :description)
+      params.require(:post).permit(:user_id, :title, :description, :is_public)
     end
 end

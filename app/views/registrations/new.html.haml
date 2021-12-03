@@ -1,0 +1,17 @@
+%h1 Sign Up Form
+= form_with(model: @user, url: '/register', method: :post) do |f|
+  %table
+    %tr
+      %td= f.label :email
+      %td= f.email_field :email, required: true
+    %tr
+      %td= f.label :password
+      %td= f.password_field :password, required: true
+    %tr
+      %td= f.label :first_name
+      %td= f.text_field :first_name, required: true
+    %tr
+      %td= f.label :last_name
+      %td= f.text_field :last_name, required: true
+    %tr
+      %td= f.submit "Sign Up"

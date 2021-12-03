@@ -1,11 +1,23 @@
+%h1 Edit Posting
+
 = form_with(model: @post, url: "/posts/#{@post.id}", method: :put) do |f|
-  = f.hidden_field :user_id
-  = f.label :title
-  = f.text_field :title
-  = f.label :description
-  = f.text_area :description
-  = f.radio_button :is_public, true
-  = f.label :is_public, "Public"
-  = f.radio_button :is_public, false
-  = f.label :is_public, "Private"
-  = f.submit "Save"
+  %table{ style: "margin: 20px 20px 0px;"}
+    %tr
+      %td= f.hidden_field :user_id
+    %tr
+      %td= f.label :title
+      %td= f.text_field :title, required: true
+    %tr
+      %td= f.label :description
+      %td= f.text_area :description, required: true
+    %tr
+      %td
+        = f.radio_button :is_public, true, required: true
+        = f.label :is_public, "Public"
+      %td
+        = f.radio_button :is_public, false, required: true
+        = f.label :is_public, "Private"
+    %tr
+      %td= f.submit "Update"
+      %td
+        %a{href: root_path} Cancel

@@ -13,3 +13,17 @@
  */
 
 @import "bootstrap";
+
+.header{
+  margin: 20px 0px;
+  display: flex;
+  justify-content: flex-end;
+  a{
+    margin: 0px 20px;
+  }
+}
+
+.flash{
+  width: 100%;
+  text-align: center;
+}
