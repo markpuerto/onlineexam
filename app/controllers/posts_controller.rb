@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.create(params_posts)
 
-    flash[:message] = "Posting has been added!"
+    flash[:message] = "A new posting has been added!"
 
     redirect_to root_path
   end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.update(params_posts)
 
-    flash[:message] = "Posting has been updated!"
+    flash[:message] = "The posting has been updated!"
 
     redirect_to root_path
   end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:post_id])
     @post.delete
 
-    flash[:message] = "Posting has been deleted!"
+    flash[:message] = "The posting has been deleted!"
 
     redirect_to root_path
   end

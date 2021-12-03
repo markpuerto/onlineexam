@@ -1,26 +1,31 @@
-%h1 POSTINGS
-
-- if session[:user_id].present?
-  %h5
-    %a{ href: new_post_path } Create New Posting
-
-%table{ style: "margin: 30px 0px 0px;"}
-  %tr
-    %th ID
-    %th Title
-    %th Description
-    %th Public Post?
-    %th Owner
-    - if session[:user_id].present?
-      %th Action
-  - @posts.each do |post|
-    %tr
-      %td=post.id
-      %td=post.title
-      %td=post.description
-      %td="#{post.is_public? ? 'Yes' : 'No' }"
-      %td=post.user.name
-      - if session[:user_id].present? and post.user.id == session[:user_id]
-        %td
-          %a{ href: edit_post_path(id: "#{post.id}") } Edit
-          = link_to 'Delete', post_delete_path("#{post.id}"), :method => :delete
+.d-flex.flex-column.container-xxl
+  .wrapper.d-flex.flex-column.flex-row-fluid.mt-4
+    .row
+      .d-flex.mb-3.justify-content-between
+        .d-flex.flex-column.py-1
+          %h1.d-flex.align-items-center.my-1
+            %span.text-dark.fw-bolder.fs-3 All Postings
+            %small.text-muted.fs-6.fw-bold.ms-1="(#{@posts.size})"
+        .d-flex.align-items-center.py-1
+          - if session[:user_id].present?
+            %a.btn.btn-flex.btn-md.btn-primary.fw-bolder.border-0.fs-6.h-40px{ href: new_post_path } New Posting
+    .d-flex.flex-column
+      - @posts.each do |post|
+        .mb-10
+          .mb-4
+            .d-flex.align-items-center.mb-3
+              %span.fs-4.fw-bolder.text-gray-900.me-1=post.title
+            %span.text-muted.fw-normal.text-gray-700.mb-4=post.description
+            .d-flex.mt-4.justify-content-between.mb-4
+              .d-flex.align-items-center.py-1
+                .symbol.w-45.me-2.d-flex.align-items-center.justify-content-center.fw-bold.h-45=post.user.initials
+                .d-flex.flex-column
+                  %span.text-gray-900.fs-7.fw-bold.lh-1.mb-2=post.user.name
+                  %span.text-muted.fs-8.fw-bold.lh-1=post.created_at.strftime("%B %d, %Y %H:%M %p")
+              - if session[:user_id].present? and post.user.id == session[:user_id]
+                .d-flex.align-items-center
+                  %a.btn.btn-sm.btn-light.h-33.mx-2{ href: edit_post_path(id: "#{post.id}") }
+                    %i.bi.bi-pencil-square
+                  %a.btn.btn-sm.btn-danger.h-33{ href: post_delete_path(post_id: "#{post.id}") }
+                    %i.bi.bi-trash-fill
+            .separator.separator-dashed.border-gray-300

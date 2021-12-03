@@ -1,0 +1,60 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *= require_self
+ */
+
+@import "bootstrap";
+
+.fs-7{
+  font-size: 0.95rem !important;
+}
+.fs-8{
+  font-size: 0.85rem !important;
+}
+
+.symbol{
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 0.475rem;
+}
+
+.w-45{
+  width: 45px;
+  background-color: $teal-100;
+}
+.h-45{
+  height: 45px;
+}
+.h-33{
+  height: 33px;
+}
+.separator{
+  display: block;
+  height: 0;
+  border-bottom: 1px solid #e4e6ef;
+}
+
+.separator-dashed{
+  border-bottom-style: dashed;
+}
+
+.border-gray{
+  border-color: #e4e6ef!important;
+}
+
+.form-control.form-control-solid{
+  background-color: #f5f8fa;
+  border-color: #f5f8fa;
+  color: #5e6278;
+  transition: color .2s ease,background-color .2s ease;
+}

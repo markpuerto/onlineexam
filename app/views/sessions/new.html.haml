@@ -1,11 +1,15 @@
-%h1 Sign In
-= form_with(model: User.new, url: '/sign-in', method: :post) do |f|
-  %table
-    %tr
-      %td= f.label :email
-      %td= f.email_field :email, required: true
-    %tr
-      %td= f.label :password
-      %td= f.password_field :password, required: true
-    %tr
-      %td= f.submit "Log In"
+.d-flex.flex-column.align-items-center.container-xxl
+  .container.d-flex.flex-column.align-items-center.mt-5
+    .col-5
+      = form_with(model: User.new, url: '/sign-in', method: :post) do |f|
+        .text-center
+          %h1.fs-3.fw-bolder Sign In
+          .text-muted.fs-7 Sign in using your account to create new posting.
+        .d-flex.flex-column.mt-5
+          = f.label :email, 'Email *', for: 'email', class: 'fw-bold fs-6 mb-1'
+          = f.email_field :email, required: true, class: 'form-control mb-4 form-control-solid', placeholder: 'Enter your email address'
+        .d-flex.flex-column
+          = f.label :password, 'Password *', for: 'password', class: 'fw-bold fs-6 mb-1'
+          = f.password_field :password, required: true, class: 'form-control mb-4 form-control-solid', placeholder: 'Enter your password'
+        .d-flex.justify-content-center
+          = f.submit "Proceed", class: 'btn btn-primary'

@@ -1,22 +1,38 @@
 !!!
 %html
   %head
-    %title Remotedojo
+    %title RemoteDojo
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    -# = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body
-    .header
-      - if session[:user_id].present?
-        %span
-          ="Signed In as: #{@user.name}"
-        %a{ href: logout_sessions_path } Sign Out
-      - else
-        %a{ href: new_session_path } Sign In
-        %a{ href: new_registration_path } Register
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+
+    %link{:href => "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css", :rel => "stylesheet"}/
+
+    = stylesheet_link_tag "reset", rel: :stylesheet, type: "text/css"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body.container-fluid.px-0
+    .container-fluid
+      %nav.navbar.navbar-light.bg-light
+        .container
+          %a{ href: root_path } RemoteDojo
+          .d-flex
+            - if session[:user_id].present?
+              .d-flex
+                .d-flex.flex-column.align-items-end
+                  %span.text-muted.fs-7 Hello
+                  %span.fw-bold=@user.first_name
+                .symbol.w-45.d-flex.align-items-center.justify-content-center.fw-bold.mx-2=@user.initials
+              %a.py-1.mx-2{ href: logout_sessions_path }
+                %i.bi.bi-box-arrow-in-right.fs-4.text-muted
+            - else
+              %a.btn{ href: new_session_path } Sign In
+              %a.btn{ href: new_registration_path } Register
     - if flash[:message].present?
-      .flash
-        %p=flash[:message]
-    = yield
+      .container.mt-3
+        .alert.alert-primary{ role: :alert }= flash[:message]
+    .container
+      = yield

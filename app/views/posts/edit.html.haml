@@ -1,23 +1,27 @@
-%h1 Edit Posting
-
-= form_with(model: @post, url: "/posts/#{@post.id}", method: :put) do |f|
-  %table{ style: "margin: 20px 20px 0px;"}
-    %tr
-      %td= f.hidden_field :user_id
-    %tr
-      %td= f.label :title
-      %td= f.text_field :title, required: true
-    %tr
-      %td= f.label :description
-      %td= f.text_area :description, required: true
-    %tr
-      %td
-        = f.radio_button :is_public, true, required: true
-        = f.label :is_public, "Public"
-      %td
-        = f.radio_button :is_public, false, required: true
-        = f.label :is_public, "Private"
-    %tr
-      %td= f.submit "Update"
-      %td
-        %a{href: root_path} Cancel
+.d-flex.flex-column.align-items-center.container-xxl
+  .container.d-flex.flex-column.align-items-center.mt-4
+    .col-8
+      = form_with(model: @post, url: "/posts/#{@post.id}", method: :put) do |f|
+        = f.hidden_field :user_id
+        .text-center
+          %h1.fs-3.fw-bolder Edit a Posting
+          .text-muted.fs-7 Update the information that is needed and click Update when done.
+        .d-flex.flex-column.mt-5
+          = f.label :title, 'Title *', for: 'post_title', class: 'fw-bold fs-6 mb-1'
+          = f.text_field :title, required: true, class: 'form-control mb-4 form-control-solid', placeholder: 'Enter title of posting'
+          %small.form-text.text-muted
+        .d-flex.flex-column
+          = f.label :description, 'Description *', for: 'post_description', class: 'fw-bold fs-6 mb-1'
+          = f.text_area :description, required: true, class: 'form-control mb-4 form-control-solid', maxlength: 255, placeholder: 'Enter description of posting', rows: 4
+        .d-flex.flex-column
+          %label.fw-bold.fs-6.mb-1 Make Public?
+          .form-group.mb-4
+            .form-check.form-check-inline
+              = f.radio_button :is_public, true, required: true, class: 'form-check-input'
+              = f.label :is_public, "Yes", class: 'form-check-label'
+            .form-check.form-check-inline
+              = f.radio_button :is_public, false, required: true, class: 'form-check-input'
+              = f.label :is_public, "No", class: 'form-check-label'
+        .d-flex.justify-content-center
+          %a{ href: root_path, class: 'btn btn-secondary mx-2' } Cancel
+          = f.submit "Update", class: 'btn btn-warning'
