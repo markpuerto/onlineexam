@@ -7,7 +7,7 @@ Coding Challenge
 ### Clone the repository
 
 ```shell
-git clone git@github.com:markpuerto/remotedojo.git
+git clone git@github.com:markpuerto/onlinexam.git
 ```
 
 ### Check your Rails and Ruby version
