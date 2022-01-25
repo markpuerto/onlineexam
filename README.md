@@ -1,6 +1,6 @@
 # Project
 
-RemoteDojo Coding Challenge
+Coding Challenge
 
 ## Install
 
